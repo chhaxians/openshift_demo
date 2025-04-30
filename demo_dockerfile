@@ -1,0 +1,6 @@
+FROM node:18-alpine           # Leichtgewichtiges Node-Image
+WORKDIR /opt/app              # Arbeitsverzeichnis im Container
+COPY package*.json ./         # Paket-Manifeste kopieren
+RUN npm ci --only=production  # Nur Produktions-Dependencies installieren
+COPY . .                      # restlichen Source-Code kopieren
+CMD ["node", "app.js"]        # Container-Startbefehl
